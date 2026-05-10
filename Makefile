@@ -36,11 +36,11 @@ ifeq "$(strip $(VER_BUMP))" ''
 		$(VER_BUMP_CONTAINER)
 endif
 MARKDOWN_LINT_VER?=v0.22.1
-GOFUMPT_VER?=v0.9.2
+GOFUMPT_VER?=v0.10.0
 GOMAJOR_VER?=v0.15.0
 GOSEC_VER?=v2.26.1
 GO_VULNCHECK_VER?=v1.3.0
-OSV_SCANNER_VER?=v2.3.5
+OSV_SCANNER_VER?=v2.3.8
 SYFT?=$(shell command -v syft 2>/dev/null)
 SYFT_CMD_VER:=$(shell [ -x "$(SYFT)" ] && echo "v$$($(SYFT) version | awk '/^Version: / {print $$2}')" || echo "0")
 SYFT_VERSION?=v1.44.0
@@ -52,7 +52,7 @@ ifneq "$(SYFT_CMD_VER)" "$(SYFT_VERSION)"
 		$(SYFT_CONTAINER)
 endif
 STATICCHECK_VER?=v0.7.0
-CI_DISTRIBUTION_VER?=3.1.0
+CI_DISTRIBUTION_VER?=3.1.1
 CI_ZOT_VER?=v2.1.16
 
 .PHONY: .FORCE
