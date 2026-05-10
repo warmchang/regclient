@@ -163,7 +163,7 @@ func (reg *Reg) referrerListByAPIPage(ctx context.Context, r ref.Ref, config sch
 
 	// lookup next link
 	respHead := resp.HTTPResponse().Header
-	links, err := httplink.Parse((respHead.Values("Link")))
+	links, err := httplink.Parse(respHead.Values("Link"))
 	if err != nil {
 		return rl, nil, err
 	}

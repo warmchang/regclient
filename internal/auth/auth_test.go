@@ -567,7 +567,8 @@ func TestBearer(t *testing.T) {
 	defer ts.Close()
 	tsURL, _ := url.Parse(ts.URL)
 	tsHost := tsURL.Host
-	bearer := NewBearerHandler(&http.Client{}, useragent, tsHost,
+	bearer := NewBearerHandler(
+		&http.Client{}, useragent, tsHost,
 		func(h string) Cred { return Cred{User: user, Password: pass} },
 		slog.New(slog.NewTextHandler(io.Discard, &slog.HandlerOptions{})),
 	).(*bearerHandler)
@@ -584,7 +585,8 @@ func TestBearer(t *testing.T) {
 	c, err := parseAuthHeader(
 		`Bearer realm="` + tsURL.String() +
 			`/tokens",service="test"` +
-			`,scope="repository:reponame:pull"`)
+			`,scope="repository:reponame:pull"`,
+	)
 	if err != nil {
 		t.Errorf("failed on parse challenge 1: %v", err)
 	}
@@ -791,7 +793,8 @@ func TestBearerToken(t *testing.T) {
 	defer ts.Close()
 	tsURL, _ := url.Parse(ts.URL)
 	tsHost := tsURL.Host
-	bearer := NewBearerHandler(&http.Client{}, useragent, tsHost,
+	bearer := NewBearerHandler(
+		&http.Client{}, useragent, tsHost,
 		func(h string) Cred { return Cred{User: user, Token: token} },
 		slog.New(slog.NewTextHandler(io.Discard, &slog.HandlerOptions{})),
 	).(*bearerHandler)
@@ -804,7 +807,8 @@ func TestBearerToken(t *testing.T) {
 	c, err := parseAuthHeader(
 		`Bearer realm="` + tsURL.String() +
 			`/tokens",service="test"` +
-			`,scope="repository:reponame:pull"`)
+			`,scope="repository:reponame:pull"`,
+	)
 	if err != nil {
 		t.Errorf("failed on parse challenge: %v", err)
 	}
