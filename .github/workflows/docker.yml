@@ -65,7 +65,7 @@ jobs:
           MINOR="${VERSION%.*}"
           MAJOR="${MINOR%.*}"
           TAG_COPIES="${HUB_IMAGE}:${MINOR}${EXT},${HUB_IMAGE}:${MAJOR}${EXT}"
-          TAG_COPIES="${GHCR_IMAGE}:${MINOR}${EXT},${GHCR_IMAGE}:${MAJOR}${EXT}"
+          TAG_COPIES="${TAG_COPIES},${GHCR_IMAGE}:${MINOR}${EXT},${GHCR_IMAGE}:${MAJOR}${EXT}"
           if [ "${{ matrix.type }}" == "scratch" ]; then
             TAG_COPIES="${TAG_COPIES},${HUB_IMAGE}:latest"
             TAG_COPIES="${TAG_COPIES},${GHCR_IMAGE}:latest"
